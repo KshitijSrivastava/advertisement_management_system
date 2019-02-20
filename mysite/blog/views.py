@@ -94,6 +94,8 @@ class PostDetailView(DetailView):
     queryset = Post.objects.all()
 
     def post(self, request, *args, **kwargs):
+        print(self.kwargs)
+        print(request.POST)
         pk=self.kwargs['pk']
         print('Start of fxns')
         add_comment_to_post(request, pk)
@@ -147,15 +149,16 @@ def add_comment_to_post(request, pk):
             # return redirect('blog:post_detail', pk=post.pk)
 
         user_email = request.user.email
+        status = request.POST['btn_status']
         post_found = get_object_or_404(Post, id=pk)
         if user_email == 'reviewer1@gmail.com':
-            post_found.rev1_status = -1
+            post_found.rev1_status = status
             post_found.save()
         elif user_email == 'reviewer2@gmail.com':
-            post_found.rev2_status = -1
+            post_found.rev2_status = status
             post_found.save()
         elif user_email == 'reviewer3@gmail.com':
-            post_found.rev3_status = -1
+            post_found.rev3_status = status
             post_found.save()
         return redirect('blog:post_list')
 

@@ -34,13 +34,15 @@
 <br>
 <!--Button to add comment  -->
 {% if user.is_authenticated and not user.is_staff and not object.rev3_status %}
-<div class="same">
-  <form class="" action="{% url 'blog:accept' object.id user.email %}" method="post">
+<div class="accept_reject_btn">
+  <!-- <form class="" action="{% url 'blog:accept' object.id user.email %}" method="post">
     {% csrf_token %}
-    <button class="accept-button" >Accept</button>
-  </form>
-  <!-- <button class="accept-button" >Accept</button> -->
-  <button class="open-button" onclick="openForm()">Reject</button>
+    <button class="accept-button" onclick="openForm(1)" >Accept</button>
+  </form> -->
+
+  <button class="open-button accept-button" onclick="openForm(1)" >Accept</button>
+
+  <button class="open-button" onclick="openForm(0)">Reject</button>
 </div>
 {% endif %}
 
@@ -48,7 +50,7 @@
 
 <!-- comment form -->
 <div class="form-popup" id="myForm">
-  <form  id='adct' class="form-container" method="post" >
+  <form  id='popup_form' class="form-container" method="post" >
     {% csrf_token %}
 
     <label for="author"><b>Author</b></label>
@@ -57,14 +59,23 @@
     <label for="text"><b>Text</b></label>
     <textarea id="text" name="text" rows="6" cols="32" placeholder="Enter text here"></textarea>
 
-    <button  type="submit" name='myntn' id='subme' class="btn">Submit</button>
+    <button type="submit" name='myntn' id='subme' class="btn">Submit</button>
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
   </form>
 </div>
 
 <script>
-function openForm() {
+function openForm(status) {
   document.getElementById("myForm").style.display = "block";
+  if (status == 1){
+    $('#popup_form').append('<input type="hidden" name="btn_status" value="1">')
+    $('.form-popup').css('left','15px')
+  }
+  else {
+    console.log('Pressed Reject btn');
+    $('#popup_form').append('<input type="hidden" name="btn_status" value="0">');
+    $('.form-popup').css('right','15px')
+  }
 }
 
 function closeForm() {

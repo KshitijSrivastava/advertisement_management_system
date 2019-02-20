@@ -1,7 +1,7 @@
 body{
   background-color: #e0e0e0;
 }
-.same{
+.accept_reject_btn{
   text-align:center;
 }
 
@@ -14,8 +14,8 @@ body{
   cursor: pointer;
   opacity: 0.8;
   position: relative;
-  bottom: 23px;
-  right: 28px;
+  bottom: 20px;
+  right: 20px;
   width: 280px;
   margin:15px;
 }
@@ -26,9 +26,8 @@ body{
   border: none;
   cursor: pointer;
   opacity: 0.8;
-  position:relative;
-  bottom: 8px;
-  right: 28px;
+  bottom: 20px;
+  right: 20px;
   width: 280px;
 }
 
@@ -37,7 +36,7 @@ body{
   display: none;
   position: fixed;
   bottom: 0;
-  right: 15px;
+  /* right: 15px; */
   border: 3px solid #f1f1f1;
   z-index: 9;
 }
