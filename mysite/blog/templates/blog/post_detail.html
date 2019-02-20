@@ -1,0 +1,104 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+
+<div class="container">
+  <div class="jumbotron">
+
+    <h1>{{object.title}}</h1>
+        <ul>
+
+
+          {% if object.start_date_pic%}
+          <li> <img src="{{ object.start_date_pic.url|default_if_none:'#' }}" alt="Start Date Pic"> </li>
+          {% endif %}
+          <li>Start Date: {{object.start_date}}</li>
+          <li>End Date: {{object.end_date}}</li>
+          <li>Amount Per Day: {{object.amount_per_day}}</li>
+          <li>Amount Per Month{{object.amount_per_month}}</li>
+          {% if object.end_date_pic%}
+          <li><img src="{{object.end_date_pic.url|default_if_none:'#'}}" alt="end date Pic"></li>
+          {% endif %}
+        </ul>
+
+  </div>
+
+</div >
+<div class="container">
+        {% if user.is_staff %}
+        <a class="btn btn-warning" href="{% url 'blog:delete_post' pk=object.id%}">Delete?</a>
+        <a class="btn btn-info" href="{% url 'blog:post_update' pk=object.id%}">Update?</a>
+        {% endif %}
+</div>
+<br>
+<br>
+<!--Button to add comment  -->
+{% if user.is_authenticated and not user.is_staff and not object.rev3_status %}
+<div class="same">
+  <form class="" action="{% url 'blog:accept' object.id user.email %}" method="post">
+    {% csrf_token %}
+    <button class="accept-button" >Accept</button>
+  </form>
+  <!-- <button class="accept-button" >Accept</button> -->
+  <button class="open-button" onclick="openForm()">Reject</button>
+</div>
+{% endif %}
+
+
+
+<!-- comment form -->
+<div class="form-popup" id="myForm">
+  <form  id='adct' class="form-container" method="post" >
+    {% csrf_token %}
+
+    <label for="author"><b>Author</b></label>
+    <input id="author" type="text" name="author" >
+
+    <label for="text"><b>Text</b></label>
+    <textarea id="text" name="text" rows="6" cols="32" placeholder="Enter text here"></textarea>
+
+    <button  type="submit" name='myntn' id='subme' class="btn">Submit</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+
+
+<!-- new comment form  -->
+{% if user.is_staff %}
+<div class="container">
+    <div class="jumbotron">
+        {% if user.is_staff %}
+
+        <br>
+        {% for comment in post.comments.all %}
+        <div class="comment">
+            <div class="date">{{ comment.created_date }}</div>
+            <strong>{{ comment.author }}</strong>
+            <p>{{ comment.text|linebreaks }}</p>
+        </div>
+    {% empty %}
+    <p>No comments here yet :(</p>
+    {% endfor %}
+    {% endif %}
+    </div>
+</div>
+
+
+{% endif %}
+
+
+
+
+
+
+{% endblock %}

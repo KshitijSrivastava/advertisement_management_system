@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>POST</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $("#subme").click(function(){
+      console.log('I was clicked');
+     $.ajax({
+       url : 'post/<int:pk>/<str:email>/reject/',
+       data: {
+         pk:object.pk,
+         email:user.email,
+         csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+       },
+       success: function(){
+
+       }
+     })
+    });
+  });
+
+
+
+
+
+    // $(document).on('submit',#adct,function(e){
+    //   console.log('Clicked Me')
+    //   e.preventDefault();
+
+    //   $.ajax({
+    //
+    //     type:'POST'
+    //     url:'post/<int:pk>/comment/'
+    //     data:{
+    //       author:$('#author').val(),
+    //       text:$('#text').val(),
+    //       csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+    //     },
+    //     success:function({
+    //
+    //       $.ajax({
+    //
+    //         type:'POST'
+    //         url:'post/<int:pk>/<str:email>/reject/'
+    //         data:{
+    //           pk:object.pk,
+    //           email:user.email,
+    //           csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+    //         }
+    //
+    //
+    //     })
+    //   });
+    // });
+  // )};
+
+  </script>
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+  <nav class="navbar navbar-default">
+
+    <div class="container">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+          <a class="navbar-brand bigbrand" href="{% url 'blog:post_list' %}">Ad management</a>
+
+          <li><a href="{% url 'blog:about' %}">About</a></li>
+          <li><a href="https://www.github.com">Github</a></li>
+          <li><a href="https://www.linkedin.com">LinkedIn</a></li>
+        </ul>
+
+        <ul class='nav navbar-nav navbar-right'>
+          {% if user.is_authenticated %}
+          <li> <a href="{% url 'blog:post_list' %}"><span class="glyphicon glyphicon-user"></span></a></li>
+
+
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Welcome {{user.username}} <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          {% if user.is_staff %}
+          <li> <a href="{% url 'blog:post_view' %}">New Post</a></li>
+          <li> <a href="{% url 'blog:rejected_post' %}">Rejected Posts</a> </li>
+
+          {% else %}
+          <li> <a href="{% url 'blog:dashboard' %}">Dashboard</a> </li>
+          {% endif %}
+          <li><a href="{% url 'blog:logout' %}" >Log out</a></li>
+        </ul>
+      </li>
+
+
+          {% else %}
+          <li> <a href="{% url 'login' %}">Login</a></li>
+          <li> <a href="{% url 'blog:signup' %}">SignUp</a></li>
+          {% endif %}
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+
+
+  <div class="jumbotron">
+    <div class="container">
+      <h2>Ad Management System</h2>
+    </div>
+
+  </div>
+
+  {% block content %}
+
+  {% endblock %}
+
+
+
+</body>
+
+</html>
