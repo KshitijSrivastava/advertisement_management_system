@@ -50,7 +50,7 @@ class PostUpdateView(UpdateView):
     model = Post
     form_class = PostForm
     exclude = ['rev1_status','rev2_status','rev3_status']
-    success_url = '/'
+    success_url = reverse_lazy('blog:rejected_post')
 
     def get_object(self):
         """
@@ -99,7 +99,9 @@ class PostDetailView(DetailView):
         pk=self.kwargs['pk']
         print('Start of fxns')
         add_comment_to_post(request, pk)
-        return redirect('blog:post_list')
+        # print(reverse('blog:dashboard'))
+        # print(redirect('blog:dashboard'))
+        return redirect('blog:dashboard')
 
 
 class PostRejectedListView(ListView):
@@ -160,43 +162,43 @@ def add_comment_to_post(request, pk):
         elif user_email == 'reviewer3@gmail.com':
             post_found.rev3_status = status
             post_found.save()
-        return redirect('blog:post_list')
+        return redirect('blog:dashboard')
 
 
-class RejectView(View):
-
-    def post(self, request, *args, **kwargs):
-        user_email = kwargs['email']
-        post_id = kwargs['pk']
-        post_found = get_object_or_404(Post, id=post_id )
-        if user_email == 'reviewer1@gmail.com' :
-            post_found.rev1_status = -1
-            post_found.save()
-        elif user_email == 'reviewer2@gmail.com' :
-            post_found.rev2_status = -1
-            post_found.save()
-        elif user_email == 'reviewer3@gmail.com' :
-            post_found.rev3_status = -1
-            post_found.save()
-        return redirect('blog:post_list')
-        return None
-
-
-class AcceptView(View):
-
-    def post(self, request, *args, **kwargs):
-        user_email = kwargs['email']
-        post_id = kwargs['pk']
-        post_found = get_object_or_404(Post, id=post_id )
-        if user_email == 'reviewer1@gmail.com' :
-            post_found.rev1_status = 1
-            post_found.save()
-        elif user_email == 'reviewer2@gmail.com' :
-            post_found.rev2_status = 1
-            post_found.save()
-        elif user_email == 'reviewer3@gmail.com' :
-            post_found.rev3_status = 1
-            post_found.save()
-        else:
-            print('No user')
-        return redirect('blog:post_list')
+# class RejectView(View):
+#
+#     def post(self, request, *args, **kwargs):
+#         user_email = kwargs['email']
+#         post_id = kwargs['pk']
+#         post_found = get_object_or_404(Post, id=post_id )
+#         if user_email == 'reviewer1@gmail.com' :
+#             post_found.rev1_status = -1
+#             post_found.save()
+#         elif user_email == 'reviewer2@gmail.com' :
+#             post_found.rev2_status = -1
+#             post_found.save()
+#         elif user_email == 'reviewer3@gmail.com' :
+#             post_found.rev3_status = -1
+#             post_found.save()
+#         return redirect('blog:post_list')
+#         return None
+#
+#
+# class AcceptView(View):
+#
+#     def post(self, request, *args, **kwargs):
+#         user_email = kwargs['email']
+#         post_id = kwargs['pk']
+#         post_found = get_object_or_404(Post, id=post_id )
+#         if user_email == 'reviewer1@gmail.com' :
+#             post_found.rev1_status = 1
+#             post_found.save()
+#         elif user_email == 'reviewer2@gmail.com' :
+#             post_found.rev2_status = 1
+#             post_found.save()
+#         elif user_email == 'reviewer3@gmail.com' :
+#             post_found.rev3_status = 1
+#             post_found.save()
+#         else:
+#             print('No user')
+#         return redirect('blog:post_list')

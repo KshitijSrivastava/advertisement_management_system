@@ -17,6 +17,13 @@ class UserCreateForm(UserCreationForm):
         self.fields['email'].label = 'email'
         self.fields['username'].label ='Username'
 
+    def clean(self):
+       super(UserCreateForm,self).clean()
+       username = self.cleaned_data.get('username')
+       if len(username) < 1:
+           self.cleaned_data['username']=self.cleaned_data['email']
+           return self.cleaned_data
+
 class PostForm(ModelForm):
 
     class Meta:
@@ -39,7 +46,7 @@ class PostForm(ModelForm):
 
         if amount_per_day < 0 or amount_per_month < 0:
             raise forms.ValidationError("Amount Cannot be negative")
-        
+
 
 class CommentForm(forms.ModelForm):
 

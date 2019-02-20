@@ -35,14 +35,11 @@
 <!--Button to add comment  -->
 {% if user.is_authenticated and not user.is_staff and not object.rev3_status %}
 <div class="accept_reject_btn">
-  <!-- <form class="" action="{% url 'blog:accept' object.id user.email %}" method="post">
-    {% csrf_token %}
-    <button class="accept-button" onclick="openForm(1)" >Accept</button>
-  </form> -->
+
 
   <button class="open-button accept-button" onclick="openForm(1)" >Accept</button>
 
-  <button class="open-button" onclick="openForm(0)">Reject</button>
+  <button class="open-button" onclick="openForm(-1)">Reject</button>
 </div>
 {% endif %}
 
@@ -73,7 +70,7 @@ function openForm(status) {
   }
   else {
     console.log('Pressed Reject btn');
-    $('#popup_form').append('<input type="hidden" name="btn_status" value="0">');
+    $('#popup_form').append('<input type="hidden" name="btn_status" value="-1">');
     $('.form-popup').css('right','15px')
   }
 }
