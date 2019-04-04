@@ -12,6 +12,8 @@ The editor is responsible for creating/modifying/deleting advertisements.
 
 ![Flow Diagram of Project](/images/Flowdiagram.png)
 
+**Flow Diagram For the Advertisement website**
+
 Advertisement field was created for the following fields
 
 ## AD Form Fields :
