@@ -1,6 +1,6 @@
 # Advertisement Management System based on Django
 
-The project involved creation of website for advertisement management systems which is frequently used by various content management sites to monitor and approve the content being made. This includes permissions where Editor can add/modify/delete form and various level of approvers/reviewers. There are category of user role in the app (Editor, Approver-1, Approver-2 and Approver-3). 
+The project involved creation of website for advertisement management systems which is frequently used by various content management sites to monitor and approve the content being made. There are category of user role in the app (Editor, Approver-1, Approver-2 and Approver-3). This includes permissions where Editor can add/modify/delete advertisement form and various level of approvers/reviewers. . 
 
 The editor is responsible for creating/modifying/deleting advertisements.
 
@@ -9,6 +9,8 @@ The editor is responsible for creating/modifying/deleting advertisements.
 **Approver2:** All the Forms approved by Approver-1 will be visible to Approver-2. If Approver-2 rejects the form then it is shown to editor with reject status along with the comments. If Approver-2 approves the form then form will visible to approver-3.
 
 **Approver3:** All form that are approved by Approver-2 will be visible to Approver-3. If Approver-3 rejects the form then show to editor with reject status. If Approver-3 approves the form then form will visible to editor or other approvers with an approved status.
+
+![Flow Diagram of Project](/images/Flowdiagram.png)
 
 Advertisement field was created for the following fields
 
