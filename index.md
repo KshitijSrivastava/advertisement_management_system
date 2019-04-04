@@ -36,15 +36,19 @@ Signup by Email, Password
 ## Few Snapshots of the website
 
 ![Sign Up](/images/Signup.JPG)
+Sign Up
 
 ![Login](/images/Loginpage.JPG)
+Login
 
 ![New advertisement post](/images/Newpost.JPG)
+New advertisement post
 
-![Reject and Accept page for Reviewer](/imagesRejectacceptpost.JPG)
+![Reject and Accept page for Reviewer](/images/Rejectacceptpost.JPG)
+Reject and Accept page for Reviewer
 
 ![Comment on the Post with accept and reject decision](/images/Commentpost.JPG)
+Comment on the Post with accept and reject decision
 
 ![Rejected Posts for the Editor](/images/Rejectedpost.JPG)
-
-
+Rejected Posts for the Editor
