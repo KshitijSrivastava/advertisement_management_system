@@ -25,10 +25,26 @@ Advertisement field was created for the following fields
 
 ## Home Page:
 
-Home page by default shows Login/Signup option. If the user clicks on Signup then it implements Django modified signup module. If user has already account and had assigned role then dashboard of user should be showed. A dashboard shows all forms list related to login user. For example the rejected forms will be shown to the editor while for the approvers the pending forms will be shown along with the respective comments.
+Home page by default shows Login/Signup option. If the user clicks on Signup then it implements Django modified signup module. If user has already account and had assigned role then dashboard of user should be showed. A dashboard shows all forms list related to loggedin user. For example the rejected forms will be shown to the editor while for the approvers the pending forms will be shown along with the respective comments.
 
 ## Login Screen:
 Modified the Django Login Module to use email instead of username and as usual password continues be used for login.
 
 ## Signup :
-Signup by Name, Email, Password
+Signup by Email, Password
+
+## Few Snapshots of the website
+
+![Sign Up](/images/Signup.JPG)
+
+![Login](/images/Loginpage.JPG)
+
+![New advertisement post](/images/Newpost.JPG)
+
+![Reject and Accept page for Reviewer](/imagesRejectacceptpost.JPG)
+
+![Comment on the Post with accept and reject decision](/images/Commentpost.JPG)
+
+![Rejected Posts for the Editor](/images/Rejectedpost.JPG)
+
+
